@@ -4,7 +4,7 @@ public class StringPatternMatching {
 
     public int bfMatch(String src, String target) {
         // 朴素的模式匹配（Brute-Force）算法，使用暴力方式进行循环匹配
-        // 时间复杂度O(nk)，空间复杂度O(1)
+        // 时间复杂度O(nm)，空间复杂度O(1)
         if (src == null || target == null) {
             return -1;
         }
@@ -28,9 +28,28 @@ public class StringPatternMatching {
         return -1;
     }
 
+    private int[] kmpTable(String target) {
+        int cnt = 0;
+        int length = target.length();
+        int[] table = new int[length];
+        table[0] = -1;
+        table[1] = 0;
+        for (int i = 2; i < length; i++) {
+            if (target.charAt(i - 1) == target.charAt(cnt)) {
+                cnt++;
+                table[i] = cnt;
+            } else if (cnt > 0) {
+                cnt = table[cnt];
+            } else {
+                table[i] = 0;
+            }
+        }
+        return table;
+    }
+
     public int kmpMatch(String src, String target) {
-        // 朴素的模式匹配（Brute-Force）算法，使用暴力方式进行循环匹配
-        // 时间复杂度O(nk)，空间复杂度O(1)
+        // KMP（Knuth-Morris-Pratt）算法，通过预先构建部分匹配表来帮助字符串匹配，避免过多回溯。
+        // 时间复杂度O(n)，空间复杂度O(m)
         if (src == null || target == null) {
             return -1;
         }
@@ -39,16 +58,18 @@ public class StringPatternMatching {
         if (len == 0 || targetLen == 0 || targetLen > len) {
             return -1;
         }
-        for (int i = 0; i < len - targetLen + 1; i++) {
-            boolean match = true;
-            for (int j = 0; j < targetLen; j++) {
-                if (src.charAt(i + j) != target.charAt(j)) {
-                    match = false;
-                    break;
-                }
+        int[] table = kmpTable(target);
+        int m = 0;
+        int i = 0;
+        while (m < len) {
+            if (i < 0 || src.charAt(m) == target.charAt(i)) {
+                m++;
+                i++;
+            } else {
+                i = table[i];
             }
-            if (match) {
-                return i;
+            if (i == targetLen) {
+                return m - targetLen;
             }
         }
         return -1;
