@@ -13,8 +13,9 @@ class StringPatternMatchingTest {
             {"", "1"},
             {null, ""},
             {"a", ""},
+            {"ABABABAABAABABAABAABABA", "ABAABABA"}
     };
-    private int[] outputs = new int[]{6, 0, -1, -1, -1, -1};
+    private int[] outputs = new int[]{6, 0, -1, -1, -1, -1, 7};
 
     @Test
     void bfMatchTest() {

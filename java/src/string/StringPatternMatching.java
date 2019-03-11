@@ -29,19 +29,22 @@ public class StringPatternMatching {
     }
 
     private int[] kmpTable(String target) {
-        int cnt = 0;
         int length = target.length();
         int[] table = new int[length];
+        int cnt = 0;
+        int pos = 2;
         table[0] = -1;
         table[1] = 0;
-        for (int i = 2; i < length; i++) {
-            if (target.charAt(i - 1) == target.charAt(cnt)) {
+        while (pos < length) {
+            if (target.charAt(pos - 1) == target.charAt(cnt)) {
                 cnt++;
-                table[i] = cnt;
+                table[pos] = cnt;
+                pos++;
             } else if (cnt > 0) {
                 cnt = table[cnt];
             } else {
-                table[i] = 0;
+                table[pos] = 0;
+                pos++;
             }
         }
         return table;
