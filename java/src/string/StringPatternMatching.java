@@ -30,6 +30,12 @@ public class StringPatternMatching {
 
     private int[] kmpTable(String target) {
         int length = target.length();
+        if (length < 2) {
+            return new int[]{-1};
+        }
+        if (length == 2) {
+            return new int[]{-1, 0};
+        }
         int[] table = new int[length];
         int cnt = 0;
         int pos = 2;
