@@ -75,4 +75,19 @@ class LongestCommonSubstringTest {
         }
     }
 
+    @Test
+    void findAllByKmpTest() {
+        LongestCommonSubstring target = new LongestCommonSubstring();
+        for (int i = 0; i < inputs.length; i++) {
+            List<String> result = target.findAllByKmp(inputs[i][0], inputs[i][1]);
+            List<String> expected = Arrays.asList(outputs[i]);
+            expected.sort(null);
+            result.sort(null);
+            assertIterableEquals(expected, result,
+                    "Inputs: " + Arrays.asList(inputs[i]) +
+                            ", Expected: " + expected +
+                            ", But actual: " + result);
+        }
+    }
+
 }
