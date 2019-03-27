@@ -9,6 +9,7 @@ import java.util.*;
 public class LongestCommonSubstring {
 
     /**
+     * 动态规划
      * 对于任意字符串X和Y，其最大公共子串一定是字符串X的某个前缀和字符串Y的某个前缀的共同后缀
      * 例如对于X=ABCDE，Y=NABCMM，最大公共子串Z=ABC一定是X前缀ABC和Y前缀NABC的共同后缀ABC。
      * <p>
@@ -181,7 +182,7 @@ public class LongestCommonSubstring {
     }
 
     /**
-     * 利用后缀数组进行KMP字符串匹配
+     * 利用后缀数组和KMP算法解出最长公共子串
      * 对于任意字符串X和Y，其最大公共子串一定是字符串X的某个前缀和字符串Y的某个前缀的共同后缀
      * 相反同样成立，最大公共子串一定是字符串X的某个后缀和字符串Y的某个后缀的共同前缀
      * 这样字符串（假设长度为n），可以分解为m个不同的后缀，例如ABCDE可以分解为：
@@ -261,8 +262,9 @@ public class LongestCommonSubstring {
 
     /**
      * KMP字符串匹配，只需返回匹配的最大长度
-     * @param src 源字符串
-     * @param target 目标字符串
+     *
+     * @param src         源字符串
+     * @param target      目标字符串
      * @param targetStart 目标字符串开始下标
      * @return 匹配的最大长度
      */
@@ -296,11 +298,20 @@ public class LongestCommonSubstring {
         return max;
     }
 
+    /**
+     * 广义后缀树
+     * TODO： 广义后缀树数据结构的实现
+     *
+     * @param x 字符串A
+     * @param y 字符串B
+     * @return 字符串A和字符串B的最长公共子串集合，无则返回空集合
+     */
     public List<String> findAllByGst(String x, String y) {
         ArrayList<String> result = new ArrayList<>();
         if (x == null || x.isEmpty() || y == null || y.isEmpty()) {
             return result;
         }
+        // TODO: 利用广义后缀树进行多字符串匹配
         Set<String> resultSet = new HashSet<>();
         return result;
     }
