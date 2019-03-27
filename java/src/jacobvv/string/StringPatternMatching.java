@@ -1,4 +1,4 @@
-package string;
+package jacobvv.string;
 
 public class StringPatternMatching {
 

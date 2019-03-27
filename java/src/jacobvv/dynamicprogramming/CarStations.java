@@ -1,4 +1,4 @@
-package dynamicprogramming;
+package jacobvv.dynamicprogramming;
 
 /**
  * 汽车装配线调度问题

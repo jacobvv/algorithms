@@ -1,4 +1,4 @@
-package string;
+package jacobvv.string;
 
 import java.util.*;
 
@@ -296,4 +296,12 @@ public class LongestCommonSubstring {
         return max;
     }
 
+    public List<String> findAllByGst(String x, String y) {
+        ArrayList<String> result = new ArrayList<>();
+        if (x == null || x.isEmpty() || y == null || y.isEmpty()) {
+            return result;
+        }
+        Set<String> resultSet = new HashSet<>();
+        return result;
+    }
 }

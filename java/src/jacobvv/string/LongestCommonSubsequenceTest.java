@@ -1,4 +1,4 @@
-package string;
+package jacobvv.string;
 
 import org.junit.jupiter.api.Test;
 
